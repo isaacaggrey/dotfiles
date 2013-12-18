@@ -1,0 +1,38 @@
+[ui]
+username = Isaac Aggrey <isaac.aggrey@gmail.com>
+ignore = ~/.hgignore
+
+[defaults]
+qnew = -Ue
+
+[web]
+cacerts = /etc/ssl/certs/ca-certificates.crt
+
+[extensions]
+color =
+convert =
+hgk =
+mq =
+pager =
+purge =
+
+[pager]
+pager = LESS='FSRX' less
+attend = annotate,blame,diff,export,glog,log,pdiff,qdiff,show,status
+
+[diff]
+git = 1
+showfunc = 1
+unified = 8
+
+# Three-way merge with vimdiff (shows result in bottom window)
+# Based on http://mercurial.selenic.com/wiki/MergingWithVim
+# and http://www.toofishes.net/blog/three-way-merging-git-using-vim/
+# Source: http://www.jamesmurty.com/2011/05/06/vimdiff-three-way-merges-in-mercurial/
+
+[ui]
+merge = vimdiff
+
+[merge-tools]
+vimdiff.executable = vim
+vimdiff.args = -d -c "wincmd J" "$output" "$local" "$base" "$other"

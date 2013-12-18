@@ -1,0 +1,24 @@
+syntax: glob
+
+# Compiled source #
+#################
+*.o
+*.class
+*.yy.c
+
+# Packages #
+#################
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+#########
+# Misc. #
+#########
+tags
+*.backup
+*.orig
+*~

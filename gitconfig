@@ -1,0 +1,58 @@
+[user]
+  email = isaac.aggrey@blackbaud.com
+  name = Isaac Aggrey
+
+[alias]
+  a  = add
+  ap = add --patch
+  d  = diff --color-words
+  dc = diff --cached
+  l  = log --graph --decorate --pretty=oneline --abbrev-commit
+  ls = ls-files
+  st = status
+  c  = commit --verbose
+  ca = commit --verbose --amend
+  co = checkout
+  cp = cherry-pick
+  br = branch --verbose --verbose
+  rb = rebase --interactive
+
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[core]
+  excludesfile = ~/.gitignore_global
+  pager = less --raw-control-chars
+
+# Three-way merge with vimdiff (shows result in bottom window)
+# Source: http://www.toofishes.net/blog/three-way-merging-git-using-vim/
+
+[merge]
+  tool = vimdiff3
+
+[mergetool "vimdiff3"]
+  cmd = vim -f --d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+
+[push]
+  default = simple
+
+[help]
+  autocorrect = 1
+
+[gui]
+  editor = gvim -p
+
+[cola]
+  fontdiff = Inconsolata,13,-1,5,50,0,0,0,0,0
+
+[commit]
+  template = /home/isaac/.gitmessage
+
+# vim: ts=2:sts=2:sw=2

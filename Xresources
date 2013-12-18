@@ -1,0 +1,20 @@
+! UI Tweaks
+URxvt*font: xft:Inconsolata:pixelsize=18
+URxvt*letterSpace: -1
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+URxvt*dynamicColors: on
+URxvt.scrollBar: false
+!URxvt.buffered: false      ! fix for slow XFT font refresh rate
+
+! Yankable URLs
+URxvt.perl-ext: default,url-select,font-size
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/firefox -new-tab
+URxvt.url-select.underline: true
+
+URxvt.keysym.C-Up:     perl:font-size:increase
+URxvt.keysym.C-Down:   perl:font-size:decrease
+URxvt.keysym.C-S-Up:   perl:font-size:incglobal
+URxvt.keysym.C-S-Down: perl:font-size:decglobal
