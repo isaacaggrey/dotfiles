@@ -190,7 +190,7 @@ linkccache
 
 function suspend() {
     print "Session is about to be suspended..."
-    sudo pm-suspend && slimlock
+    sudo pm-suspend && dm-tool lock
 }
 
 #######################################################################
