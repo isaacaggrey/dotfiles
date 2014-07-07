@@ -161,6 +161,7 @@ let g:Tex_DefaultTargetFormat = 'pdf'
 if has("autocmd")
   autocmd BufRead,BufNewFile *.txt set filetype=markdown
   autocmd BufRead,BufNewFile *.md set tabstop=4 softtabstop=4 shiftwidth=4 colorcolumn="" nonumber
+  autocmd BufRead,BufNewFile haproxy* set ft=haproxy
 endif
 
 """""""""""""""""""" FUNCTIONS
