@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# set Dvorak keyboard
+setxkbmap -layout dvorak
+
+# set CapsLock as an addtional Control Key
+setxkbmap -option ctrl:nocaps
+
+# set the cursor
+xsetroot -cursor_name left_ptr
+
+# set the background
+eval $(cat $HOME/.fehbg)
+
+# start redshift
+redshift -m vidmode -l 32.998868:-96.772436 &
+
+# define Xresources
+userresources=$HOME/.Xresources
+if [ -f "$userresources" ]; then
+  xrdb -merge "$userresources"
+fi
+
+# start urxvt daemon
+urxvtd -q -f -o
