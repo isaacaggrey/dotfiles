@@ -6,7 +6,6 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 URxvt*dynamicColors: on
 URxvt.scrollBar: false
-!URxvt.buffered: false      ! fix for slow XFT font refresh rate
 
 ! Yankable URLs
 URxvt.perl-ext: default,url-select,font-size
