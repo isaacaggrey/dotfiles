@@ -3,7 +3,7 @@
 """"""""""""""""""""
 filetype off
 if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/vundle/
+    set runtimepath+=~/.vim/bundle/Vundle.vim
 endif
 
 call vundle#rc()
