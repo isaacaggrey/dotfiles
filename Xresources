@@ -1,6 +1,6 @@
 ! UI Tweaks
 URxvt*font: xft:Inconsolata:pixelsize=18
-URxvt*letterSpace: -1
+URxvt*letterSpace: 0
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
