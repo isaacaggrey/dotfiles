@@ -193,6 +193,13 @@ function suspend() {
     sudo pm-suspend && dm-tool lock
 }
 
+fasd_cache="$HOME/.fasd-init-zsh"
+if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache"  ]; then
+  fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install >| "$fasd_cache"
+fi
+source "$fasd_cache"
+unset fasd_cache
+
 #######################################################################
 # FILE SOURCES
 #######################################################################
@@ -204,7 +211,7 @@ eval "$(hub alias -s)"
 source $HOME/.dynamic-colors/completions/dynamic-colors.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-foreach scriptFile (.zshenv.private .zshrc.private .fasd-init-zsh) {
+foreach scriptFile (.zshenv.private .zshrc.private) {
     [[ -f ~/$scriptFile ]]
         source ~/$scriptFile
 }
