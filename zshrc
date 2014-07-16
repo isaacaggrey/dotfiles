@@ -207,8 +207,6 @@ unset fasd_cache
 eval `dircolors /etc/dir_colors`
 eval "$(hub alias -s)"
 
-#FIXME install dynamic colors properly
-source $HOME/.dynamic-colors/completions/dynamic-colors.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 foreach scriptFile (.zshenv.private .zshrc.private) {
