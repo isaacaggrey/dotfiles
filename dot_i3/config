@@ -151,3 +151,4 @@ bar {
 
 focus_follows_mouse no
 exec pa-applet
+exec pidgin
