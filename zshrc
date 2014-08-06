@@ -35,6 +35,7 @@ alias ssh='ssh -C'
 alias sudo='sudo '
 alias v='fasd -e vim' # quick opening files with vim
 alias addon-sdk="cd /opt/addon-sdk-git && source bin/activate; cd -"
+alias mvn="rainbow --config=mvn3 -- mvn"
 
 alias -s txt='vim'
 alias -s pdf='xdg-open'
