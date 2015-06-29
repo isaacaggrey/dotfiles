@@ -1,5 +1,8 @@
 ! UI Tweaks
-URxvt*font: xft:Inconsolata:pixelsize=18
+URxvt*font: xft:Inconsolata:pixelsize=18:hinting=true:antialias=true
+URxvt.boldFont: xft:Inconsolata:bold:pixelsize=18:hinting=true:antialias=true
+URxvt.italicFont: xft:Inconsolata:italic:pixelsize=18:hinting=true:antialias=true
+URxvt.boldItalicFont: xft:Inconsolata:bold:italic:pixelsize=18:hinting=true:antialias=true
 URxvt*letterSpace: 0
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
