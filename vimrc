@@ -6,52 +6,60 @@ if has('vim_starting')
     set runtimepath+=~/.vim/bundle/Vundle.vim
 endif
 
-call vundle#rc()
-Bundle 'gmarik/vundle'
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
 
 " File & Edit Operations
-Bundle 'SirVer/ultisnips'
-Bundle 'git://repo.or.cz/vcscommand.git'
-Bundle 'honza/vim-snippets'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'sjl/gundo.vim'
-Bundle 'vim-pandoc/vim-pandoc'
+Plugin 'SirVer/ultisnips'
+Plugin 'git://repo.or.cz/vcscommand.git'
+Plugin 'honza/vim-snippets'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'sjl/gundo.vim'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'ervandew/supertab'
 
+Plugin 'chase/vim-ansible-yaml'
 " Movement & Text Objects
-Bundle 'argtextobj.vim'
-Bundle 'bkad/CamelCaseMotion'
-Bundle 'dahu/vim-fanfingtastic'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'goldfeld/vim-seek'
+Plugin 'argtextobj.vim'
+Plugin 'bkad/CamelCaseMotion'
+Plugin 'dahu/vim-fanfingtastic'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'goldfeld/vim-seek'
 
 " UI
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'tomasr/molokai'
-Bundle 'wting/rust.vim'
-Bundle 'kbarrette/mediummode'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+Plugin 'wting/rust.vim'
+Plugin 'kbarrette/mediummode'
+Plugin 'mileszs/ack.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-sensible'
+Plugin 'jez/vim-superman'
 
+" CSS/HTML
+Plugin 'mattn/emmet-vim'
 " Temporary
+Plugin 'scrooloose/nerdtree'
 
 " Potential
-"Bundle 'Valloric/YouCompleteMe'
-"Bundle 'scrooloose/syntastic'
-"Bundle 'mileszs/ack.vim'
-"Bundle 'on-chen/sack' " ag/ack enhancement
-"Bundle 'burke/matcher' " Command-T like matcher for CtrlP
-"Bundle 'airblade/vim-gitgutter' "shows git diff in gutter
-"Bundle 'panozzaj/vim-autocorrect' "autocorrect for vim
-"Bundle 'EasyGrep' "better interface into grep
-"Bundle 'benmills/vimux' "integrate tmux with vim
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'scrooloose/syntastic'
+"Plugin 'on-chen/sack' " ag/ack enhancement
+"Plugin 'burke/matcher' " Command-T like matcher for CtrlP
+"Plugin 'panozzaj/vim-autocorrect' "autocorrect for vim
+"Plugin 'EasyGrep' "better interface into grep
+"Plugin 'benmills/vimux' "integrate tmux with vim
 
+call vundle#end()
+filetype plugin indent on
 """""""""""""""""""" GLOBAL
 set nocompatible
 set shortmess=I
 
 syntax enable
-filetype plugin indent on
 set autoread
 
 if has('wildmenu')
