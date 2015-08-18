@@ -73,7 +73,6 @@ endif
 set noerrorbells
 set visualbell
 set t_vb=
-set spell
 
 """""""""""""""""""" LOOK AND FEEL
 colorscheme solarized
