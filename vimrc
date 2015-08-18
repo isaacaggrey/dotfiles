@@ -55,6 +55,7 @@ Plugin 'scrooloose/nerdtree'
 
 call vundle#end()
 filetype plugin indent on
+runtime /usr/share/vim/vim74/macros/matchit.vim
 """""""""""""""""""" GLOBAL
 set nocompatible
 set shortmess=I
