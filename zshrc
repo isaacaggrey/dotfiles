@@ -46,6 +46,8 @@ alias -s odt='xdg-open'
 # OPTIONS
 #######################################################################
 
+# comments on command-line
+setopt interactivecomments
 ## interaction
 setopt extended_glob
 
