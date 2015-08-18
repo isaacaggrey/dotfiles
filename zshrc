@@ -30,6 +30,7 @@ alias ll='ls -l'
 alias ls='ls --color'
 alias o='fasd -a -e xdg-open' # quick opening files with xdg-open
 alias pacman='pacman --color always'
+alias packer='packer-io'
 alias rm='rm -I' # safer rm
 alias ssh='ssh -C'
 alias sudo='sudo '
