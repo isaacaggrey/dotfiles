@@ -160,6 +160,7 @@ let g:ctrlp_user_command = {
     \ 'fallback': 'find %s -type f',
     \ }
 let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:SuperTabDefaultCompletionType = "context"
 
 """""""""""""""""""" FILE SPECIFIC
 let g:ft_ignore_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\)$'
