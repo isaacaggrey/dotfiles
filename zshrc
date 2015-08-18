@@ -217,3 +217,14 @@ foreach scriptFile (.zshenv.private .zshrc.private) {
     [[ -f ~/$scriptFile ]]
         source ~/$scriptFile
 }
+
+# disable interrupt flow keybinding
+stty -ixon
+
+vman() {
+  vim -c "SuperMan $*"
+
+  if [ "$?" != "0" ]; then
+    echo "No manual entry for $*"
+  fi
+}
