@@ -142,8 +142,6 @@
     # Enable CUPS to print documents.
     printing.enable = true;
 
-    logind.lidSwitchDocked="ignore";
-
     # Enable the X11 windowing system.
     xserver = {
         enable = true;
