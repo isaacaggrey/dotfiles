@@ -55,7 +55,7 @@
 
   # Select internationalisation properties.
   i18n = {
-    consoleKeyMap = "us";
+    consoleKeyMap = "dvorak";
     defaultLocale = "en_US.UTF-8";
   };
 
