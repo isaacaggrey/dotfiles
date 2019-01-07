@@ -58,6 +58,7 @@
 
   fonts.fonts = with pkgs; [
     inconsolata
+    fira-code
   ];
 
   # Select internationalisation properties.
@@ -81,7 +82,6 @@
     firefox
     chromium
     rxvt_unicode
-    inconsolata
     xclip
 
     rustc
