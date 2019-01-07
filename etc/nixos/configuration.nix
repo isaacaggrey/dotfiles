@@ -130,7 +130,6 @@
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
-  programs.adb.enable = true;
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -177,7 +176,7 @@
     isNormalUser = true;
     home = "/home/isaac";
     description = "Isaac Aggrey";
-    extraGroups = ["wheel" "bumblebee" "docker" "audio" "adbusers"];
+    extraGroups = ["wheel" "bumblebee" "docker" "audio"];
     createHome = true;
     shell = pkgs.zsh;
   };
