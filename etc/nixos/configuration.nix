@@ -150,7 +150,7 @@
     layout = "us";
     xkbOptions = "ctrl:nocaps";
     # use `intel` driver (`nouveau` and `nvidia` do not work)
-    videoDrivers = ["intel"];
+    videoDrivers = ["intel" "nvidia"];
     displayManager.lightdm.enable = true;
     windowManager.i3.enable = true;
 
