@@ -7,6 +7,7 @@
     ];
 
   nixpkgs.config.allowUnfree = true;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -76,7 +77,6 @@
     rustc
     cargo
     binutils
-    gcc
     gnumake
     openssl
     pkgconfig
@@ -127,6 +127,7 @@
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
+  programs.adb.enable = true;
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -142,31 +143,38 @@
   services.printing.enable = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "ctrl:nocaps";
-#  services.xserver.videoDrivers = ["nvidia"];
-  services.xserver.videoDrivers = ["nouveau" "intel"];
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    xkbOptions = "ctrl:nocaps";
+    # use `intel` driver (`nouveau` and `nvidia` do not work)
+    videoDrivers = ["intel"];
+    displayManager.lightdm.enable = true;
+    windowManager.i3.enable = true;
+
+    # Enable touchpad support.
+    libinput.enable = true;
+  };
+
   hardware.bumblebee.enable = true;
   hardware.bumblebee.connectDisplay = true;
 
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+    extraConfig = ''
+      load-module module-switch-on-connect
+    '';
+  };
 
-  # Enable touchpad support.
-  services.xserver.libinput.enable = true;
-
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.windowManager.i3.enable = true;
+  services.logind.lidSwitchDocked="ignore";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.isaac = {
     isNormalUser = true;
     home = "/home/isaac";
     description = "Isaac Aggrey";
-    extraGroups = ["wheel" "bumblebee" "docker" "audio"];
+    extraGroups = ["wheel" "bumblebee" "docker" "audio" "adbusers"];
     createHome = true;
     shell = pkgs.zsh;
   };
@@ -175,6 +183,6 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.nixos.stateVersion = "18.09"; # Did you read the comment?
+  system.stateVersion = "18.09"; # Did you read the comment?
 
 }
