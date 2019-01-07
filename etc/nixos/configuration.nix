@@ -49,6 +49,9 @@
 
   networking.firewall.enable = false;
 
+  fonts.fonts = with pkgs; [
+    inconsolata
+  ];
 
   # Select internationalisation properties.
   i18n = {
