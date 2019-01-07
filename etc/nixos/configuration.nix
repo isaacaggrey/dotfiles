@@ -9,11 +9,17 @@
   nixpkgs.config.allowUnfree = true;
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.addNetworkInterface = true;
+  virtualisation.virtualbox = {
+    host = {
+      enable = true;
+      addNetworkInterface = true;
+    };
+  };
 
   # networking.hostName = "nixos"; # Define your hostname.
 
@@ -28,26 +34,27 @@
   #  #   };
   #  # };
   #};
-  networking.networkmanager.enable = true;
-  networking.extraHosts =
-    ''
-      127.0.0.1 docker.localhost
-      127.0.0.1 local.docker
-      #192.168.2.53 securelogin.arubanetworks.com
-      #172.16.217.20 securelogin.arubanetworks.com
-      #172.31.98.0 securelogin.arubanetworks.com
-      #172.31.98.1 securelogin.arubanetworks.com
-      #172.31.99.1 securelogin.arubanetworks.com
-      #172.31.98.0 aruba.odyssys.net
-      #172.31.98.1 aruba.odyssys.net
-      #172.31.99.1 aruba.odyssys.net
-    '';
-    # for starkbucks issue... should just need 172.31.98.1
-    # nameserver 172.31.98.0
-    # nameserver 172.31.98.1
-    #nameserver 172.31.99.1
-
-  networking.firewall.enable = false;
+  networking = {
+    networkmanager.enable = true;
+    firewall.enable = false;
+    extraHosts =
+      ''
+        127.0.0.1 docker.localhost
+        127.0.0.1 local.docker
+        #192.168.2.53 securelogin.arubanetworks.com
+        #172.16.217.20 securelogin.arubanetworks.com
+        #172.31.98.0 securelogin.arubanetworks.com
+        #172.31.98.1 securelogin.arubanetworks.com
+        #172.31.99.1 securelogin.arubanetworks.com
+        #172.31.98.0 aruba.odyssys.net
+        #172.31.98.1 aruba.odyssys.net
+        #172.31.99.1 aruba.odyssys.net
+      '';
+      # for starkbucks issue... should just need 172.31.98.1
+      # nameserver 172.31.98.0
+      # nameserver 172.31.98.1
+      #nameserver 172.31.99.1
+  };
 
   fonts.fonts = with pkgs; [
     inconsolata
@@ -126,50 +133,45 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.zsh.enable = true;
-  # programs.bash.enableCompletion = true;
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   # List services that you want to enable:
+  services = {
+    # Enable the OpenSSH daemon.
+    openssh.enable = true;
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+    # Enable CUPS to print documents.
+    printing.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+    logind.lidSwitchDocked="ignore";
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+    # Enable the X11 windowing system.
+    xserver = {
+        enable = true;
+        layout = "us";
+        xkbOptions = "ctrl:nocaps";
+        # use `intel` driver (`nouveau` and `nvidia` do not work)
+        videoDrivers = ["intel" "nvidia"];
+        displayManager.lightdm.enable = true;
+        windowManager.i3.enable = true;
 
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    xkbOptions = "ctrl:nocaps";
-    # use `intel` driver (`nouveau` and `nvidia` do not work)
-    videoDrivers = ["intel" "nvidia"];
-    displayManager.lightdm.enable = true;
-    windowManager.i3.enable = true;
-
-    # Enable touchpad support.
-    libinput.enable = true;
+        # Enable touchpad support.
+        libinput.enable = true;
+      };
   };
 
-  hardware.bumblebee.enable = true;
-  hardware.bumblebee.connectDisplay = true;
-
-  hardware.pulseaudio = {
-    enable = true;
-    package = pkgs.pulseaudioFull;
-    extraConfig = ''
-      load-module module-switch-on-connect
-    '';
+  hardware = {
+    bumblebee = {
+      enable = true;
+      connectDisplay = true;
+    };
+    pulseaudio = {
+      enable = true;
+      package = pkgs.pulseaudioFull;
+      extraConfig = ''
+        load-module module-switch-on-connect
+      '';
+    };
   };
-
-  services.logind.lidSwitchDocked="ignore";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.isaac = {
@@ -186,5 +188,4 @@
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "18.09"; # Did you read the comment?
-
 }
