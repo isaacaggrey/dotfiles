@@ -6,14 +6,24 @@
       ./hardware-configuration.nix
     ];
 
-  nixpkgs.config.allowUnfree = true;
+    nixpkgs.config = {
+      allowUnfree = true;
+      chromium.enableWideVine = true;
+    };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
+#  nixpkgs.config.allowBroken = true;
 
+  boot.supportedFilesystems = ["ntfs" "exfat"];
+
+  boot.kernel.sysctl."vm.max_map_count" = 262144;
+
+  security.pki.certificates = [];
+  #security.pki.certificates = [ "/home/isaac/.skyux/certs/skyux-server.pem" ];
   virtualisation.virtualbox = {
     host = {
       enable = true;
@@ -41,6 +51,7 @@
       ''
         127.0.0.1 docker.localhost
         127.0.0.1 local.docker
+        10.233.81.101 ip-10-233-81-101
         #192.168.2.53 securelogin.arubanetworks.com
         #172.16.217.20 securelogin.arubanetworks.com
         #172.31.98.0 securelogin.arubanetworks.com
@@ -62,8 +73,8 @@
   ];
 
   # Select internationalisation properties.
+  console.keyMap = "dvorak";
   i18n = {
-    consoleKeyMap = "dvorak";
     defaultLocale = "en_US.UTF-8";
   };
 
@@ -78,11 +89,11 @@
     tmux
     docker
     fasd
-    openjdk
     firefox
     chromium
     rxvt_unicode
     xclip
+    openjdk11
 
     rustc
     cargo
@@ -136,11 +147,16 @@
 
   # List services that you want to enable:
   services = {
+    timesyncd.enable = true;
+    blueman.enable = true;
     # Enable the OpenSSH daemon.
     openssh.enable = true;
 
     # Enable CUPS to print documents.
     printing.enable = true;
+    printing.drivers = [pkgs.gutenprint];
+    #samba.enable = true;
+    #samba.package = pkgs.sambaFull;
 
     # Enable the X11 windowing system.
     xserver = {
@@ -148,9 +164,11 @@
         layout = "us";
         xkbOptions = "ctrl:nocaps";
         # use `intel` driver (`nouveau` and `nvidia` do not work)
-        videoDrivers = ["intel" "nvidia"];
+        videoDrivers = ["nvidia"];
         displayManager.lightdm.enable = true;
+        displayManager.defaultSession = "gnome";
         windowManager.i3.enable = true;
+        desktopManager.gnome3.enable = true;
 
         # Enable touchpad support.
         libinput.enable = true;
@@ -158,10 +176,7 @@
   };
 
   hardware = {
-    bumblebee = {
-      enable = true;
-      connectDisplay = true;
-    };
+    bluetooth.enable = true;
     pulseaudio = {
       enable = true;
       package = pkgs.pulseaudioFull;
@@ -176,7 +191,7 @@
     isNormalUser = true;
     home = "/home/isaac";
     description = "Isaac Aggrey";
-    extraGroups = ["wheel" "bumblebee" "docker" "audio"];
+    extraGroups = ["wheel" "bumblebee" "docker" "audio" "wireshark" "dialout"];
     createHome = true;
     shell = pkgs.zsh;
   };

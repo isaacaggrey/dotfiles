@@ -1,5 +1,5 @@
 [user]
-  email = isaac.aggrey@blackbaud.com
+  email = github@mail.isaacaggrey.com
   name = Isaac Aggrey
 
 [alias]
@@ -16,6 +16,8 @@
   cp = cherry-pick
   br = branch --verbose --verbose
   rb = rebase --interactive
+  gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"
+
 
 [color]
   branch = auto
@@ -28,6 +30,7 @@
   untracked = cyan
 
 [core]
+	editor = nvim
   excludesfile = ~/.gitignore_global
   pager = less --raw-control-chars
 
@@ -35,11 +38,10 @@
 # Source: http://www.toofishes.net/blog/three-way-merging-git-using-vim/
 
 [merge]
-  tool = vimdiff3
-  conflictstyle = diff3
+  tool = vimdiff
 
-[mergetool "vimdiff3"]
-  cmd = vim -f --d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+[mergetool "vimdiff"]
+  cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [push]
   default = simple
@@ -55,5 +57,11 @@
 
 [commit]
   template = /home/isaac/.gitmessage
+
+[pull-request]
+  template  = /home/isaac/.gitprmessage
+
+[mergetool]
+	path = nvim
 
 # vim: ts=2:sts=2:sw=2

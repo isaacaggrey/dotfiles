@@ -19,6 +19,10 @@ Plug 'tpope/vim-commentary'
 Plug 'cohama/lexima.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'rust-lang/rust.vim'
+Plug 'cespare/vim-toml'
+Plug 'plasticboy/vim-markdown'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'LnL7/vim-nix'
 call plug#end()
 
 set number
